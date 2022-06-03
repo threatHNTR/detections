@@ -17,11 +17,11 @@ detection:
     selection_uri_1:
         c-uri|contains:
             - 'java.lang.Runtime'
-            - '.exec'
+            - 'javax.script.ScriptEngineManager'
     selection_uri_2:
         c-uri|contains:
-            - 'java.lang.Runtime'
-            - 'javax.script.ScriptEngineManage'
+            - '.exec'
+            - '.command'
     condition: selection_uri_1 or selection_uri_2
 falsepositives:
     - Unknown
