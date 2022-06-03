@@ -22,7 +22,7 @@ detection:
         c-uri|contains:
             - '.exec'
             - '.command'
-    condition: selection_uri_1 or selection_uri_2
+    condition: selection_uri_1 and selection_uri_2
 falsepositives:
-    - Unknown
+    - unknown
 level: medium
