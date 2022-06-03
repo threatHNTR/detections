@@ -1,0 +1,28 @@
+title: OGNL Injection
+description: Detects OGNL Injection (potentially CVE-2022-26134)
+status: experimental
+references:
+    - https://www.rapid7.com/blog/post/2022/06/02/active-exploitation-of-confluence-cve-2022-26134/
+    - https://www.volexity.com/blog/2022/06/02/zero-day-exploitation-of-atlassian-confluence/
+    - https://github.com/jbaines-r7/through_the_wire
+    - https://confluence.atlassian.com/doc/confluence-security-advisory-2022-06-02-1130377146.html
+author: threatHNTR
+date: 2022/06/03
+tags:
+- attack.initial_access
+- attack.t1190
+logsource:
+    category: webserver
+detection:
+    selection_uri_1:
+        c-uri|contains:
+            - 'java.lang.Runtime'
+            - '.exec'
+    selection_uri_2:
+        c-uri|contains:
+            - 'java.lang.Runtime'
+            - 'javax.script.ScriptEngineManage'
+    condition: selection_uri_1 or selection_uri_2
+falsepositives:
+    - Unknown
+level: medium
