@@ -9,8 +9,8 @@ references:
 author: threatHNTR
 date: 2022/06/03
 tags:
-- attack.initial_access
-- attack.t1190
+    - attack.initial_access
+    - attack.t1190
 logsource:
     category: webserver
 detection:
