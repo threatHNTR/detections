@@ -1,4 +1,4 @@
-# name of the Detection
+# Name of the Detection
 
 ## Description
 
