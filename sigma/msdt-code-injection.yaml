@@ -1,0 +1,30 @@
+title: MSDT Code Execution
+description: Detects MDST command-line arguments to exploit CVE-2022-3190  
+status: experimental
+references:
+  - https://doublepulsar.com/follina-a-microsoft-office-code-execution-vulnerability-1a47fce5629e
+  - https://msrc-blog.microsoft.com/2022/05/30/guidance-for-cve-2022-30190-microsoft-support-diagnostic-tool-vulnerability/
+  - https://www.huntress.com/blog/microsoft-office-remote-code-execution-follina-msdt-bug
+  - https://app.any.run/tasks/713f05d2-fe78-4b9d-a744-f7c133e3fafb/
+author: threatHNTR
+date: 06/08/2022
+tags:
+  - attack.execution
+  - attack.T1059.003
+  - attack.T1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    process:
+      Image: 
+        - 'msdt.exe'
+      CommandLine|contains:
+        - 'PWCDiagnostic'
+    command_line:
+      CommandLine|contains:
+        - 'IT_BrowseForFile'
+    condition: process and command_line
+falsepositives:
+  - unknown
+level: high
