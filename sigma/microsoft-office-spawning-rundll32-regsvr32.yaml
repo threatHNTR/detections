@@ -1,0 +1,30 @@
+title: Microsoft Office spawning Rundll32 or Regsvr32
+description: Detects Rundll32 or Regsvr32 executed as a child of Microsoft Office processes. Detects Qbots initial access as well as other threats spawning from initial access via Microsoft Office.  
+status: experimental
+references:
+  - https://attack.mitre.org/software/S0650/
+  - https://redcanary.com/threat-detection-report/threats/qbot/
+author: threatHNTR
+date: 06/13/2022
+tags:
+  - attack.defense_evasion
+  - attack.T1218.010
+  - attack.T1218.011
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    parent_process:
+      ParentImage|contains: 
+        - 'excel.exe'
+        - 'winword.exe'
+        - 'powerpnt.exe'
+        - 'outlook.exe'
+    process:
+      Image|contains:
+        - 'rundll32.exe'
+        - 'regsvr32.exe'
+    condition: parent_process and process
+falsepositives:
+  - unknown
+level: high
