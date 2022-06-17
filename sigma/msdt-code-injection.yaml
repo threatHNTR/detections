@@ -24,6 +24,7 @@ detection:
     command_line:
       CommandLine|contains:
         - 'IT_BrowseForFile'
+        - 'IT_ReBrowseForFile'
     condition: process and command_line
 falsepositives:
   - unknown
