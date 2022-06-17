@@ -14,15 +14,15 @@ tags:
 logsource:
     category: webserver
 detection:
-    selection_uri_1:
+    selection1:
         c-uri|contains:
             - 'java.lang.Runtime'
             - 'javax.script.ScriptEngineManager'
-    selection_uri_2:
+    selection2:
         c-uri|contains:
             - '.exec'
             - '.command'
-    condition: selection_uri_1 and selection_uri_2
+    condition: selection1 and selection2
 falsepositives:
     - unknown
 level: medium
