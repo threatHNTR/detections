@@ -1,0 +1,27 @@
+title: Cobalt Strike Win32 Listener from RunDll32
+description: Detects rundll32.exe executing a DLL function name, StartW, on the command line that is commonly observed with Cobalt Strike x86 and x64 DLL payloads. 
+status: experimental
+references:
+  - https://trial.cobaltstrike.com/help-windows-executable
+  - https://thedfirreport.com/2021/08/29/cobalt-strike-a-defenders-guide/
+  - https://docs.splunksecurityessentials.com/content-detail/suspicious_rundll32_startw/
+author: threatHNTR
+date: 06/27/2022
+tags:
+  - attack.defense_evasion
+  - attack.T1218
+  - attack.T1218.011
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    process:
+      Image: 
+        - 'rundll32.exe'
+    command_line:
+      CommandLine:
+        - 'StartW'
+    condition: process and command_line
+falsepositives:
+  - unknown
+level: high
