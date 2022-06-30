@@ -1,0 +1,26 @@
+title: Execution of Esentutl to Extract Browser Data
+description: Detects execution of esentutl to extract browser data. One way Qbot steals sensitive information is by extracting browser data from Internet Explorer and Microsoft Edge by using the built-in utility esentutl.exe.
+status: experimental
+references:
+  - https://attack.mitre.org/software/S0404/
+  - https://redcanary.com/threat-detection-report/threats/qbot/
+  - https://twitter.com/Kostastsale/status/1542288180296110080
+author: threatHNTR
+date: 06/30/2022
+tags:
+  - attack.collection
+  - attack.T1005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    process:
+      Image: 
+        - 'esentutl.exe'
+    command_line:
+      CommandLine|contains:
+        - '\Windows\WebCache'
+    condition: process and command_line
+falsepositives:
+  - unknown
+level: medium
