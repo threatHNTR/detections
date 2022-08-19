@@ -1,0 +1,29 @@
+title: Microsoft MSDT “DogWalk” CVE-2022-34713
+description: Detects possible MSDT "DogWalk" exploitation attempt process creation. 
+status: experimental
+references:
+  - https://irsl.medium.com/the-trouble-with-microsofts-troubleshooters-6e32fc80b8bd/
+  - https://thehackernews.com/2022/06/researchers-warn-of-unpatched-dogwalk.html
+  - https://www.securonix.com/blog/detecting-microsoft-msdt-dogwalk/
+author: threatHNTR
+date: 08/19/2022
+tags:
+  - attack.execution
+  - attack.T1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    process:
+      Image: 
+        - 'msdt.exe'
+    command_line1:
+      CommandLine:
+        - '/cab'
+    command_line2:
+        CommandLine:
+        - '.diagcab'
+    condition: process and command_line1 and command_line2
+falsepositives:
+  - unknown
+level: high
