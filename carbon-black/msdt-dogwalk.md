@@ -4,6 +4,8 @@
 
 DogWalk takes advantage of the Microsoft Troubleshoot component baked into modern versions of Windows except this time the exploit lies in .diagcab files which can be used by a threat actor to download files to the victim’s computer. In short, these files contain diagnostic information and resources that can be modified by an attacker to download a .exe file into an unsuspecting user’s startup folder, for example.
 
+![Doglwalk](https://www.securonix.com/wp-content/uploads/2022/06/Picture1.gif)
+
 ## Detection
 
 ```
