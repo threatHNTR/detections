@@ -7,7 +7,7 @@ Windows Safe Mode is a special startup mode that allows users to run administrat
 ## Detection
 
 ```
-(process_name:bcedit.exe AND (process_cmdline:\/set AND process_cmdline:safeboot AND (process_cmdline:minimal OR process_cmdline:network)))
+(process_name:bcdedit.exe AND (process_cmdline:\/set AND process_cmdline:safeboot AND (process_cmdline:minimal OR process_cmdline:network)))
 ```
 
 ## References
