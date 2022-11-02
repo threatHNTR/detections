@@ -1,0 +1,29 @@
+title: Persistent DLL For IcedID Infection
+description: Detects a suspicious rundll32.exe command-line to execute a DLL file. This technique was seen in IcedID malware to load its payload DLL with the following parameter to load encrypted DLL payload which is the license.dat.
+status: experimental
+references:
+  - https://www.binarydefense.com/icedid-gziploader-analysis/
+  - https://www.splunk.com/en_us/blog/security/detecting-icedid-could-it-be-a-trickbot-copycat.html
+  - https://blogs.vmware.com/security/2021/07/icedid-analysis-and-detection.html
+author: threatHNTR
+date: 11/02/2022
+tags:
+  - attack.persistence
+  - attack.T1218.011
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    process:
+      Image|contains:
+        - 'rundll32.exe'
+    commandline1:
+      CommandLine|contains:
+        - 'update /:'
+    commandline2:
+      CommandLine|contains:
+        - 'license.dat'
+    condition: process and commandline1 and commandline2
+falsepositives:
+  - unknown
+level: high
