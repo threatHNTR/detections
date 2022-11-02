@@ -1,0 +1,34 @@
+title: Reboot to Windows Safe Mode to Bypass AV Tools via BCDEdit
+description: Detects reboot to Windows Safe Mode to bypass AV tools via BCDEdit. Ransomware operators has added a new ability to encrypt files in Windows Safe Mode, likely to evade detection by security software and for greater success when encrypting files.
+status: experimental
+references:
+  - https://www.bleepingcomputer.com/news/security/revil-ransomware-has-a-new-windows-safe-mode-encryption-mode/
+  - https://www.bleepingcomputer.com/news/security/snatch-ransomware-reboots-to-windows-safe-mode-to-bypass-av-tools/
+  - https://posts.specterops.io/capability-abstraction-case-study-detecting-malicious-boot-configuration-modifications-1852e2098a65
+  - https://twitter.com/rfackroyd/status/1547233931015213056
+author: threatHNTR
+date: 11/02/2022
+tags:
+  - attack.defense_evasion
+  - attack.T1562.009
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    process:
+      Image|contains:
+        - 'bcdedit.exe'
+    commandline1:
+      CommandLine|contains:
+        - '/set'
+    commandline2:
+      CommandLine|contains:
+        - 'safeboot'
+    commandline3:
+      CommandLine|contains:
+        - 'minimal'
+        - 'network'
+    condition: process and commandline1 and commandline2 and commandline3
+falsepositives:
+  - unknown
+level: high
