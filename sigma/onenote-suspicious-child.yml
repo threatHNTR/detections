@@ -1,0 +1,47 @@
+title: OneNote Suspicious Child Process
+description: Detects suspicious child processes of OneNot documents. OneNote being the parent process of these LOLBins could potentially be an indication of malware performing actions in order to compromise the system.
+status: experimental
+references:
+  - https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/trojanized-onenote-document-leads-to-formbook-malware/
+  - https://news.sophos.com/en-us/2023/02/06/qakbot-onenote-attacks/
+  - https://www.bleepingcomputer.com/news/security/new-qaknote-attacks-push-qbot-malware-via-microsoft-onenote-files/
+  - https://github.com/pr0xylife/Qakbot/blob/main/Qakbot_obama237_07.02.2023.txt
+  - https://github.com/pan-unit42/tweets/blob/master/2023-02-07-IOCs-for-probable-Matanbuchus-activity.txt
+author: threatHNTR
+date: 02/09/2023
+tags:
+  - attack.persistence
+  - attack.T1176
+  - attack.T1059.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+    parent_name:
+      ParentImage|contains:
+        - 'onenote.exe'
+    process_name:
+      Image|contains:
+        - 'mshta.exe'
+        - 'cmd.exe'
+        - 'powershell.exe'
+        - 'pwsh.exe'
+        - 'cscript.exe'
+        - 'wscript.exe'
+        - 'msdt.exe'
+        - 'schtasks.exe'
+        - 'scrons.exe'
+        - 'regsvr32.exe'
+        - 'hh.exe'
+        - 'wmic.exe'
+        - 'rundll32.exe'
+        - 'msiexec.exe'
+        - 'forfiles.exe'
+        - 'scriptrunner.exe'
+        - 'svchost.exe'
+        - 'control.exe'
+        - 'certutil.exe'
+    condition: parent_name and process_name
+falsepositives:
+  - unknown
+level: high
