@@ -22,6 +22,7 @@ detection:
     parent_name:
       ParentImage|contains:
         - 'onenote.exe'
+        - 'onenotem.exe'
     process_name:
       Image|contains:
         - 'mshta.exe'
