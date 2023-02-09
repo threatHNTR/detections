@@ -10,9 +10,11 @@ references:
 author: threatHNTR
 date: 02/09/2023
 tags:
-  - attack.persistence
-  - attack.T1176
-  - attack.T1059.001
+  - attack.defense_evasion
+  - attachk.execution
+  - attack.T1059
+  - attack.T1202
+  - attack.T1218.001
 logsource:
   category: process_creation
   product: windows
