@@ -1,0 +1,26 @@
+title: Remotely Hosted HTA File Executed via Mshta
+status: experimental
+description: Detects execution of the "mshta" utility with command-line arguments containing URLs containing "http," "https," or "ftp." Such activity may indicate that an attacker is attempting to execute a remotely hosted Hypertext Application (HTA) file, which could potentially be malicious.
+references:
+    - https://redcanary.com/threat-detection-report/techniques/mshta/
+author: Hunter Juhan
+date: 2024/01/18
+tags:
+    - attack.defense_evasion
+    - attack.t1218.005
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    process:
+        - Image|endswith:
+              - '\mshta.exe'
+        - OriginalFileName: 
+              - 'mshta.exe'
+    commandline:
+      CommandLine|contains:
+        - 'http://'
+        - 'https://'
+        - 'ftp://'
+    condition: process and commandline
+level: high
