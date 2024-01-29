@@ -1,4 +1,5 @@
-title: Attempted Exploitation of CVE-2024-23897 (Jenkins Data Leak Vulnerability) 
+title: Attempted Exploitation of CVE-2024-23897
+id: de426754-5bbb-408c-aaa1-114e2620c7e5
 status: experimental
 author: threatHNTR
 date: 2024/01/29
@@ -10,8 +11,8 @@ references:
   - https://github.com/binganao/CVE-2024-23897
 tags:
   - cve.2024.23897
-  - attack.T1190
-  - attack.inital_access
+  - attack.t1190
+  - attack.initial_access
   - attack.t1210
   - attack.lateral_movement
 logsource:
@@ -19,7 +20,7 @@ logsource:
 detection:
   selection:
     cs-method: 'POST'
-    c-uri|contains: 'cli?remoting=false'
+    c-uri|contains: 'cli\?remoting=false'
   condition: selection
 falsepositives:
   - Unknown
