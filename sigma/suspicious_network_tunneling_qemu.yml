@@ -5,7 +5,7 @@ description: Detects potentially suspicious network tunneling activities initiat
 references:
     - https://securelist.com/network-tunneling-with-qemu/111803/
     - https://www.qemu.org/docs/master/system/invocation.html#hxtool-5
-author: Hunter Juhan
+author: Hunter Juhan (@threatHNTR)
 date: 2024/03/13
 tags:
     - attack.command_and_control
